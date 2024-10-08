@@ -1,13 +1,14 @@
-const express = require("express");
+const express = require("express"); // app express
 const path = require("path");
 const app = express();
 const slugify = require("slugify");
+const configViewEngine = require("./config/viewEngine"); // import viewEngine từ bên config
 require("dotenv").config();
-const port = process.env.PORT || 8888;
-const hostname = process.env.HOST_NAME;
-app.set("views", path.join(__dirname, "views"));
-//set ejs view engine
-app.set("view engine", "ejs");
+const port = process.env.PORT || 8888; // use env file for port numbers
+const hostname = process.env.HOST_NAME; // hostname
+console.log(__dirname);
+//config template engine
+configViewEngine(app);
 
 app.get("/", (req, res) => {
   res.render("sample.ejs");
